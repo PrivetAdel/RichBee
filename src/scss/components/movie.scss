@@ -1,0 +1,145 @@
+.movie {
+  width: 100%;
+  margin: 30px auto;
+  padding: 15px;
+  background-color: rgba($color: #111111, $alpha: 0.8);
+  border-radius: 10px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+  }
+}
+
+.movie__poster-block {
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+.movie__poster {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 768px) {
+    width: 95px;
+  }
+}
+
+.movie__info-block {
+  padding: 15px 5px 5px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    padding: 15px 5px 5px 20px;
+  }
+}
+
+.movie__block--title {
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.movie__title {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: start;
+  color: white;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.movie__rating-bg {
+  display: flex;
+  align-items: center;
+  padding: 7px 12px 8px;
+  background-color: #fac539;
+  border-radius: 8px;
+  min-width: 83px;
+  max-width: 90px;
+  margin-bottom: 15px;
+}
+
+.movie__rating {
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.movie__block--info {
+  display: flex;
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  color: white;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 33px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgba($color: #ffffff, $alpha: 0.05);
+  }
+}
+
+.movie__block--awards {
+  margin-top: 30px;
+  text-align: start;
+}
+
+.movie__type,
+.movie__genre,
+.movie__year,
+.movie__awards {
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+}
+
+.movie__type {
+  padding-right: 10px;
+}
+
+.movie__genre {
+  padding: 0 10px;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    height: 16px;
+    width: 1px;
+    background-color: #ffffff;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.movie__year {
+  padding-left: 10px;
+}

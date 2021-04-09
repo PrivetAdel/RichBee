@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Movie = ({id, title, image, year = ''}) => {
+const Movie = ({id, type, genre, title, image, year, ratings, awards}) => {
   return (
     <div className="movie">
       <Link className="movie__poster-block" to={`/movies/${id}`}>
@@ -12,18 +12,18 @@ const Movie = ({id, title, image, year = ''}) => {
         <div className="movie__block--title">
           <Link className="movie__title" to={`/movies/${id}`}>{title}</Link>
           <span className="movie__rating-bg">
-            <p className="movie__rating">IMDb 8.8</p>
+            <p className="movie__rating">{ratings}</p>
           </span>
         </div>
         
         <div className="movie__block--info">
-          <p className="movie__type">Movie</p>
-          <p className="movie__genre">Drama</p>
+          <p className="movie__type">{type}</p>
+          <p className="movie__genre">{genre}</p>
           <p className="movie__year">{year}</p>
         </div>
 
         <div className="movie__block--awards">
-          <p className="movie__awards">Awards</p>
+          <p className="movie__awards">{awards}</p>
         </div>
       </div>
     </div>

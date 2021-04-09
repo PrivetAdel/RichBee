@@ -23,7 +23,7 @@ const MainPage = () => {
       <div className="main-page">
         <h1>Unlimited&nbsp;movies, TV&nbsp;shows, and&nbsp;more.</h1>
         <h3>Watch anywhere. Cancel&nbsp;anytime.</h3>
-        <Search handleSendRequest={sendRequest}/>
+        <Search lightTheme handleSendRequest={sendRequest} />
         {
           movies.length ? movies.map((movie) => {
             return <Movie {...movie} key={movie.id} />

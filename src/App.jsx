@@ -4,7 +4,6 @@ import {MainPage, MoviePage} from './pages';
 
 const App = () => {
   return (
-    // <MoviePage />
     <Switch>
       <Route path="/main" component={MainPage} />
       <Route path="/movies/:id" component={MoviePage} />

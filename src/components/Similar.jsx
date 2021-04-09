@@ -1,25 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import similar from '../assets/similar.png';
 
-const Similar = ({id, title, image, year = ''}) => {
+const Similar = ({id, title, type, genre, image, year, text, ratings}) => {
   return (
     <div className="similar">
-      <Link className="similar__poster-block" to={`/movies/${id}`}>
-        <img className="similar__poster" alt="similar movie poster" src={similar} />
-      </Link>
+      <img className="similar__poster" alt="similar movie poster" src={image} />
 
-      <div className="similar__info-block">
-        <Link className="similar__title" to={`/movies/${id}`}>{title}</Link>
+      <div className="similar__overlay">
+        <div className="similar__info-block">
+          <Link className="similar__title" to={`/movies/${id}`}>{title}</Link>
 
-        <p className="similar__genre">Drama</p>
-        <p className="similar__type">Movie, {year}</p>
+          <p className="similar__genre">{genre}</p>
+          <p className="similar__type">{type}, {year}</p>
 
-        <p className="similar__text">Awards</p>
+          <p className="similar__text">{text}</p>
 
-        <span className="movie__rating-bg">
-          <p className="movie__rating">IMDb 8.8</p>
-        </span>
+          <span className="movie__rating-bg">
+            <p className="movie__rating">{ratings}</p>
+          </span>
+        </div>
       </div>
     </div>
   );

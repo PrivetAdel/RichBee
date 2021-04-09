@@ -1,8 +1,7 @@
-import {GET_MOVIES_ID, GET_MOVIES} from '../actions';
+import {GET_MOVIES_ID} from '../actions';
 
 const initialState = {
-  moviesId: [],
-  movies: []
+  moviesId: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,12 +10,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         moviesId: action.payload
-      };
-
-    case GET_MOVIES:
-      return {
-        ...state,
-        movies: action.payload
       };
       
     default: 

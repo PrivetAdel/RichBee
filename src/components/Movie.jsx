@@ -1,7 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-const Movie = ({id, type, genre, title, image, year, ratings, awards}) => {
+const Movie = ({id}) => {
+  const [movie, setMovie] = React.useState({
+    type: '', 
+    genres: '', 
+    title: '', 
+    image: '', 
+    year: '', 
+    ratings: '', 
+    awards: ''
+  })
+
+  const {type, genres, title, image, year, ratings, awards} = movie;
+
+  useEffect(() => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    const url = 'https://imdb-api.com/en/API/Title/k_xrjol9cl/';
+    const options = '/Ratings';
+
+    fetch(`${url}${id}${options}`, requestOptions)
+      .then(response => response.json())
+      .then(data => setMovie(data))
+      .catch(error => console.log('error', error))
+  }, []);
+
   return (
     <div className="movie">
       <Link className="movie__poster-block" to={`/movies/${id}`}>
@@ -12,13 +39,13 @@ const Movie = ({id, type, genre, title, image, year, ratings, awards}) => {
         <div className="movie__block--title">
           <Link className="movie__title" to={`/movies/${id}`}>{title}</Link>
           <span className="movie__rating-bg">
-            <p className="movie__rating">{ratings}</p>
+            <p className="movie__rating">IMDb {ratings.imDb}</p>
           </span>
         </div>
         
         <div className="movie__block--info">
           <p className="movie__type">{type}</p>
-          <p className="movie__genre">{genre}</p>
+          <p className="movie__genre">{genres}</p>
           <p className="movie__year">{year}</p>
         </div>
 

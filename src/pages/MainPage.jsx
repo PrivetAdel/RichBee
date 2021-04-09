@@ -1,17 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Movie from '../components/Movie';
 import Search from '../components/Search';
-import {fetchMoviesId, fetchMovies} from '../redux/actions';
+import {fetchMoviesId} from '../redux/actions';
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const moviesId = useSelector((rootReducer) => rootReducer.moviesId);
-  const movies = useSelector((rootReducer) => rootReducer.movies);
-
-  useEffect(() => {
-    dispatch(fetchMovies(moviesId));
-  });
 
   const sendRequest = (title) => {
     dispatch(fetchMoviesId(title));
@@ -25,8 +20,8 @@ const MainPage = () => {
         <h3>Watch anywhere. Cancel&nbsp;anytime.</h3>
         <Search lightTheme handleSendRequest={sendRequest} />
         {
-          movies.length ? movies.map((movie) => {
-            return <Movie {...movie} key={movie.id} />
+          moviesId.length ? moviesId.map((movieId) => {
+            return <Movie id={movieId} key={movieId} />
           }) : ''
         }
       </div>

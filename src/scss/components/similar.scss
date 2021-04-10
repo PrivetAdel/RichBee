@@ -25,12 +25,15 @@
   position: relative;
   max-width: 263px;
   margin: 30px auto;
+  border-radius: 10px;
+  background-color: #323232;
 }
 
 .similar__poster {
   width: 263px;
   height: 361px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .similar__overlay {

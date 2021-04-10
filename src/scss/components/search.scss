@@ -18,7 +18,7 @@
     left: 14px;
     height: 20px;
     width: 20px;
-    z-index: 2;
+    pointer-events: none;
     background: url('../../assets/search.svg') no-repeat center;
   }
 
@@ -58,6 +58,12 @@
   font-weight: 700;
   cursor: pointer;
   border-radius: 0 30px 30px 0;
+  transition: 0.5s all;
+
+  &:focus,
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .dark-search__input {
@@ -77,5 +83,18 @@
 }
 
 .dark-search__button {
-  display: none;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  top: 7px;
+  left: 13px;
+  height: 22px;
+  width: 22px;
+  font-size: 0;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    top: 14px;
+    left: 24px;
+  }
 }

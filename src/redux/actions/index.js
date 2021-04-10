@@ -1,11 +1,12 @@
 export const GET_MOVIES_ID = 'GET_MOVIES_ID';
+export const PUT_MOVIE = 'PUT_MOVIE';
 
 const requestOptions = {
   method: 'GET',
   redirect: 'follow'
 };
 
-const url = 'https://imdb-api.com/en/API/SearchMovie/k_xrjol9cl/';
+const url = 'https://imdb-api.com/en/API/SearchMovie/k_8zvk1y4n/';
 // const key = 'k_8zvk1y4n/';
 // const key = 'k_xrjol9cl';
 
@@ -24,4 +25,9 @@ export const fetchMoviesId = (title) => (dispatch) => {
 export const getMoviesId = (moviesId) => ({
   type: GET_MOVIES_ID,
   payload: moviesId
+});
+
+export const putMovie = (movie) => ({
+  type: PUT_MOVIE,
+  payload: movie
 });

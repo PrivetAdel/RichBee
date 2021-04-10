@@ -1,45 +1,27 @@
-import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {Link, useParams} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchMoviesId} from '../redux/actions';
 import Search from '../components/Search';
 import Similar from '../components/Similar';
 
 const MoviePage = () => {
-  const [movie, setMovie] = React.useState({
-    id: '',
-    type: '', 
-    genres: '', 
-    title: '', 
-    image: '', 
-    year: '',
-    plot: '', 
-    ratings: '', 
-    awards: '',
-    trailer: '', 
-    similars: []
-  })
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  const movie = useSelector((rootReducer) => rootReducer.movies[id]);
+  console.log(movie);
 
-  const {id, type, genres, title, image, year, plot, ratings, awards, trailer, similars} = movie;
+  const sendRequest = (title) => {
+    dispatch(fetchMoviesId(title));
+  };
 
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    const url = 'https://imdb-api.com/en/API/Title/k_xrjol9cl/';
-    const options = '/Ratings';
-
-    fetch(`${url}${id}${options}`, requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log('error', error))
-  }, []);
+  const {type, genres, title, image, year, plot, ratings, awards, trailer, similars } = movie;
 
   return (
     <div className="movie-page">
       <header className="movie-page__header">
         <Link className="movie-page__header-link" to="/main">Richbee Shows</Link>
-        <Search darkTheme />
+        <Search darkTheme handleSendRequest={sendRequest} />
       </header>
 
       <section className="main-block">
@@ -51,7 +33,7 @@ const MoviePage = () => {
           <h1 className="main-block__title">{title}</h1>
           <div className="main-block__inner">
             <span className="main-block__rating-bg">
-              <p className="main-block__rating">{ratings}</p>
+              <p className="main-block__rating">IMDb {ratings.imDb}</p>
             </span>
             <p className="main-block__genre">{genres}</p>
             <p className="main-block__type">{type}</p>
@@ -75,7 +57,7 @@ const MoviePage = () => {
           <h3 className="similar-block__title">You may also like</h3>
           <div className="similar-block__wrapper">
             {
-              similars ? (similars.map((similar) => <Similar {...similar} />)) : ''
+              similars ? (similars.map((similar) => <Similar {...similar} key={similar.id} />)) : ''
             }
           </div>
         </div>

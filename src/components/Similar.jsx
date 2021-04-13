@@ -1,14 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {putSimilarMovie, fetchMovie} from '../redux/actions';
+import {fetchMovie} from '../redux/actions';
 
 const maxLengthText = (text, maxLength) => {
   if (text.length > maxLength) {
     const shortText = text.slice(0, maxLength - 3);
     return shortText + '...';
   } 
-
   return text;
 }
 

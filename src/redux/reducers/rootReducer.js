@@ -1,8 +1,9 @@
-import {GET_MOVIES_ID, GET_MOVIE, PUT_SIMILAR_MOVIE} from '../actions';
+import {GET_MOVIES_ID, GET_MOVIE, PUT_SIMILAR_MOVIE, PUT_TRAILER, DELETE_TRAILER} from '../actions';
 
 const initialState = {
   moviesId: [],
-  movies: {}
+  movies: {},
+  trailer: ''
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -31,6 +32,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: newMovie
+      };
+
+    case PUT_TRAILER: 
+      return {
+        ...state,
+        trailer: action.payload
+      };
+
+    case DELETE_TRAILER:
+      return {
+        ...state,
+        trailer: ''
       };
       
     default: 

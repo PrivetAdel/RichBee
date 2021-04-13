@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchMoviesId, putSimilars, deleteSimilars} from '../redux/actions';
+import {fetchMoviesId, fetchTrailer, deleteTrailer} from '../redux/actions';
 import Search from '../components/Search';
 import Similar from '../components/Similar';
 import classNames from 'classnames';
@@ -10,20 +10,17 @@ const MoviePage = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
   const movie = useSelector((rootReducer) => rootReducer.movies[id]);
+  const trailer = useSelector((rootReducer) => rootReducer.trailer);
 
   const sendRequest = (title) => {
     dispatch(fetchMoviesId(title));
   };
 
-  // useEffect(() => {
-  //   if (movie) {
-  //     dispatch(putSimilars(similars))
-  //   }
+  useEffect(() => {
+    dispatch(fetchTrailer(id));
 
-  //   return () => {
-  //     dispatch(deleteSimilars(similars))
-  //   }
-  // }, [movie]);
+    return () => dispatch(deleteTrailer(id))
+  }, []);
 
   return (
     <div className="movie-page">
@@ -54,10 +51,10 @@ const MoviePage = () => {
 
               <div className="main-block__wrap">
                 <a 
-                  href={movie.trailer ? movie.trailer : '#'}
+                  href={trailer.videoUrl ? trailer.videoUrl : '#'}
                   className={classNames(
                     "main-block__video-link",
-                    {"isDisabled": !movie.trailer}
+                    {"isDisabled": !trailer.videoUrl}
                   )}
                   target="_blank" 
                   rel="noreferrer">

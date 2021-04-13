@@ -196,6 +196,19 @@
   color: white;
   border: 2px solid white;
   border-radius: 40px;
+
+  &:hover {
+    transform: scale(0.98);
+  }
+}
+
+.isDisabled {
+  opacity: 0.5;
+  pointer-events: none;
+
+  &:hover .main-block__video-link {
+    transform: none;
+  }
 }
 
 .main-block__awards {

@@ -1,4 +1,4 @@
-import {GET_MOVIES_ID, PUT_MOVIE} from '../actions';
+import {GET_MOVIES_ID, GET_MOVIE, PUT_SIMILAR_MOVIE} from '../actions';
 
 const initialState = {
   moviesId: [],
@@ -13,7 +13,17 @@ const rootReducer = (state = initialState, action) => {
         moviesId: action.payload
       };
 
-    case PUT_MOVIE:
+    case PUT_SIMILAR_MOVIE:
+      const moviesIdWithSimilar = [
+        ...state.moviesId,
+        action.payload
+      ]
+      return {
+        ...state,
+        moviesId: moviesIdWithSimilar
+      };
+
+    case GET_MOVIE: 
       const newMovie = {
         ...state.movies,
         [action.payload.id]: action.payload

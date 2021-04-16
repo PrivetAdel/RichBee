@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchMoviesId, fetchTrailer, deleteTrailer} from '../redux/actions';
+import {fetchMoviesId, fetchTrailer, deleteTrailer, cleanMoviesId} from '../redux/actions';
 import Search from '../components/Search';
 import Similar from '../components/Similar';
 import PopupTrailer from '../components/PopupTrailer';
@@ -18,6 +18,7 @@ const MoviePage = () => {
   }
 
   const sendRequest = (title) => {
+    dispatch(cleanMoviesId());
     dispatch(fetchMoviesId(title));
   };
 
@@ -31,7 +32,12 @@ const MoviePage = () => {
     <div className="movie-page">
       <header className="movie-page__header">
         <Link className="movie-page__header-link" to="/main">Richbee Shows</Link>
-        <Search darkTheme handleSendRequest={sendRequest} />
+        <Search 
+          darkTheme 
+          handleSendRequest={sendRequest} 
+          children={
+            <Link className="movie-page__header-link movie-page__header-link--search" to="/main" />
+          } />
       </header>
 
       {

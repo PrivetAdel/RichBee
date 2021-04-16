@@ -4,6 +4,7 @@ export const GET_MOVIE = 'GET_MOVIE';
 export const SET_SIMILAR_MOVIE = 'SET_SIMILAR_MOVIE';
 export const SET_TRAILER = 'SET_TRAILER';
 export const DELETE_TRAILER = 'DELETE_TRAILER';
+export const CLEAN_MOVIES_ID = 'CLEAN_MOVIES_ID';
 
 const requestOptions = {
   method: 'GET',
@@ -30,6 +31,10 @@ export const fetchMoviesId = (title) => (dispatch) => {
 export const getMoviesId = (moviesId) => ({
   type: GET_MOVIES_ID,
   payload: moviesId
+});
+
+export const cleanMoviesId = () => ({
+  type: CLEAN_MOVIES_ID
 });
 
 export const fetchMovie = (id) => (dispatch) => {

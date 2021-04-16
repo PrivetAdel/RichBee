@@ -1,4 +1,4 @@
-import {GET_MOVIES_ID, GET_MOVIE, SET_SIMILAR_MOVIE, SET_TRAILER, DELETE_TRAILER} from '../actions';
+import {GET_MOVIES_ID, GET_MOVIE, SET_SIMILAR_MOVIE, SET_TRAILER, DELETE_TRAILER, CLEAN_MOVIES_ID} from '../actions';
 
 const initialState = {
   moviesId: [],
@@ -13,6 +13,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         moviesId: action.payload
       };
+    
+    case CLEAN_MOVIES_ID: 
+      return {
+        ...state,
+        moviesId: []
+      }
 
     case SET_SIMILAR_MOVIE:
       const moviesIdWithSimilar = [

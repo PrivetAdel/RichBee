@@ -1,13 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Search = ({handleSendRequest, lightTheme = false, darkTheme = false}) => {
+const Search = ({handleSendRequest, lightTheme = false, darkTheme = false, children = ''}) => {
   const [title, setTitle] = React.useState('');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleSendRequest(title);
-    setTitle('');
+    if (title) {
+      handleSendRequest(title);
+      setTitle('');
+    }
   };
 
   const handleInputTitle = (evt) => {
@@ -30,15 +32,14 @@ const Search = ({handleSendRequest, lightTheme = false, darkTheme = false}) => {
         value={title}
       />
 
-      <input
+      <button
         className={classNames({
           "dark-search__button": darkTheme,
           "light-search__button": lightTheme
         })}
         type="submit"
         onClick={handleSubmit}
-        value="Search"
-      />
+      >Search{children}</button>
     </form>
   );
 };

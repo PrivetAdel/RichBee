@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/richbee/static/css/main.6019cfd9.chunk.css",
-    "main.js": "/richbee/static/js/main.ccf7c1a5.chunk.js",
-    "main.js.map": "/richbee/static/js/main.ccf7c1a5.chunk.js.map",
-    "runtime-main.js": "/richbee/static/js/runtime-main.d7fc5145.js",
-    "runtime-main.js.map": "/richbee/static/js/runtime-main.d7fc5145.js.map",
-    "static/js/2.a7d51447.chunk.js": "/richbee/static/js/2.a7d51447.chunk.js",
-    "static/js/2.a7d51447.chunk.js.map": "/richbee/static/js/2.a7d51447.chunk.js.map",
-    "index.html": "/richbee/index.html",
-    "static/css/main.6019cfd9.chunk.css.map": "/richbee/static/css/main.6019cfd9.chunk.css.map",
-    "static/js/2.a7d51447.chunk.js.LICENSE.txt": "/richbee/static/js/2.a7d51447.chunk.js.LICENSE.txt",
-    "static/media/app.scss": "/richbee/static/media/search.cf9a8844.svg"
+    "main.css": "/RichBee/static/css/main.5af7aab1.chunk.css",
+    "main.js": "/RichBee/static/js/main.ccf7c1a5.chunk.js",
+    "main.js.map": "/RichBee/static/js/main.ccf7c1a5.chunk.js.map",
+    "runtime-main.js": "/RichBee/static/js/runtime-main.4f215bcc.js",
+    "runtime-main.js.map": "/RichBee/static/js/runtime-main.4f215bcc.js.map",
+    "static/js/2.a7d51447.chunk.js": "/RichBee/static/js/2.a7d51447.chunk.js",
+    "static/js/2.a7d51447.chunk.js.map": "/RichBee/static/js/2.a7d51447.chunk.js.map",
+    "index.html": "/RichBee/index.html",
+    "static/css/main.5af7aab1.chunk.css.map": "/RichBee/static/css/main.5af7aab1.chunk.css.map",
+    "static/js/2.a7d51447.chunk.js.LICENSE.txt": "/RichBee/static/js/2.a7d51447.chunk.js.LICENSE.txt",
+    "static/media/app.scss": "/RichBee/static/media/search.cf9a8844.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d7fc5145.js",
+    "static/js/runtime-main.4f215bcc.js",
     "static/js/2.a7d51447.chunk.js",
-    "static/css/main.6019cfd9.chunk.css",
+    "static/css/main.5af7aab1.chunk.css",
     "static/js/main.ccf7c1a5.chunk.js"
   ]
 }

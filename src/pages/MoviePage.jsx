@@ -4,13 +4,18 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchMoviesId, fetchTrailer, deleteTrailer} from '../redux/actions';
 import Search from '../components/Search';
 import Similar from '../components/Similar';
-import classNames from 'classnames';
+import PopupTrailer from '../components/PopupTrailer';
 
 const MoviePage = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = React.useState(false);
   const movie = useSelector((rootReducer) => rootReducer.movies[id]);
   const trailer = useSelector((rootReducer) => rootReducer.trailer);
+
+  const toglePopupTrailer = () => {
+    setIsOpen((s) => !s)
+  }
 
   const sendRequest = (title) => {
     dispatch(fetchMoviesId(title));
@@ -19,8 +24,8 @@ const MoviePage = () => {
   useEffect(() => {
     dispatch(fetchTrailer(id));
 
-    return () => dispatch(deleteTrailer(id))
-  }, []);
+    return () => dispatch(deleteTrailer())
+  }, [id]);
 
   return (
     <div className="movie-page">
@@ -33,6 +38,9 @@ const MoviePage = () => {
         movie ? (
           <>
             <section className="main-block">
+              {
+                isOpen ? (<PopupTrailer closePopup={toglePopupTrailer} trailer={trailer} />) : ''
+              }
               <div className="main-block__poster-block">
                 <img className="main-block__poster" alt="film poster" src={movie.image} />
               </div>
@@ -50,16 +58,9 @@ const MoviePage = () => {
               </div>
 
               <div className="main-block__wrap">
-                <a 
-                  href={trailer.videoUrl ? trailer.videoUrl : '#'}
-                  className={classNames(
-                    "main-block__video-link",
-                    {"isDisabled": !trailer.videoUrl}
-                  )}
-                  target="_blank" 
-                  rel="noreferrer">
+                <button className="main-block__video-btn" onClick={toglePopupTrailer} disabled={!trailer.videoUrl}>
                   Watch
-                </a>
+                </button>
                 <p className="main-block__awards">{movie.awards}</p>
               </div>
             </section>

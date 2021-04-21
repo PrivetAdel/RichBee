@@ -7,7 +7,7 @@
 
 .dark-search {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   max-width: 420px;
   position: relative;
 
@@ -23,6 +23,8 @@
   }
 
   @media (min-width: 768px) {
+    justify-content: flex-end;
+
     &:after {
       top: 15px;
       left: 25px;
@@ -70,7 +72,7 @@
 .dark-search__input {
   width: 100%;
   font-size: 16px;
-  padding: 10px 20px 10px 40px;
+  padding: 10px 20px 10px 45px;
   border: none;
   font-weight: 400;
   border-radius: 30px;
@@ -87,15 +89,23 @@
   position: absolute;
   border: none;
   background-color: transparent;
-  top: 7px;
-  left: 13px;
-  height: 22px;
-  width: 22px;
+  top: 2px;
+  left: 7px;
+  height: 35px;
+  width: 35px;
   font-size: 0;
+  border-radius: 50%;
+  transition: 0.3s;
   cursor: pointer;
 
   @media (min-width: 768px) {
-    top: 14px;
-    left: 24px;
+    height: 40px;
+    width: 40px;
+    top: 5px;
+    left: 15px;
+  }
+
+  &:hover {
+    background-color: rgba($color: #111111, $alpha: 0.5);
   }
 }

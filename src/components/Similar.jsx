@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {fetchMovie} from '../redux/actions';
+import {fetchMovie} from '../redux/api';
+import {setMovie} from '../redux/actions';
 
 const maxLengthText = (text, maxLength) => {
   if (text.length > maxLength) {
@@ -15,7 +16,9 @@ const Similar = ({id, title, type, genres, image, year, plot, imDbRating}) => {
   const dispatch = useDispatch();
 
   const followTheLink = () => {
-    dispatch(fetchMovie(id));
+    fetchMovie(id)
+      .then(res => dispatch(setMovie(res.data)))
+      .catch(error => console.error('Error', error))
   }
 
   return (

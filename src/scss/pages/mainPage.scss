@@ -1,6 +1,14 @@
 .main-page {
   text-align: center;
   padding: 25vh 5%;
+  min-height: 100vh;
+  background-image: url('../../assets/background.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-color: black;
 
   h1 {
     font-weight: 900;
@@ -39,20 +47,4 @@
       font-size: 36px;
     }
   }
-}
-
-.background-pic {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  min-height: 100vh;
-  z-index: -2;
-  background-image: url('../../assets/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-color: black;
 }

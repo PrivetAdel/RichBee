@@ -1,7 +1,10 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {cleanMoviesId} from '../redux/actions';
 import classNames from 'classnames';
 
 const Search = ({handleSendRequest, lightTheme = false, darkTheme = false, children = ''}) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = React.useState('');
 
   const handleSubmit = (evt) => {
@@ -9,6 +12,10 @@ const Search = ({handleSendRequest, lightTheme = false, darkTheme = false, child
     if (title) {
       handleSendRequest(title);
       setTitle('');
+    }
+
+    if (!title) {
+      dispatch(cleanMoviesId());
     }
   };
 
@@ -31,15 +38,16 @@ const Search = ({handleSendRequest, lightTheme = false, darkTheme = false, child
         onChange={handleInputTitle}
         value={title}
       />
-
-      <button
-        className={classNames({
-          "dark-search__button": darkTheme,
-          "light-search__button": lightTheme
-        })}
-        type="submit"
-        onClick={handleSubmit}
-      >Search{children}</button>
+      
+        <button
+          className={classNames({
+            "dark-search__button": darkTheme,
+            "light-search__button": lightTheme
+          })}
+          type="submit"
+          onClick={handleSubmit}
+        >Search{children}</button>
+      
     </form>
   );
 };

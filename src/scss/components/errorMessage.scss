@@ -1,0 +1,14 @@
+.error-message__container {
+  max-width: 555px;
+  margin: 20px auto;
+  padding: 50px 20px;
+  background-color: rgba($color: #111111, $alpha: 0.8);
+  border-radius: 10px;
+}
+
+.error-message__text {
+  font-size: 20px;
+  line-height: 38px;
+  font-weight: 500;
+  color: white;
+}

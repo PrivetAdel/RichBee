@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchMoviesId, fetchTrailer, deleteTrailer, cleanMoviesId} from '../redux/actions';
-import Search from '../components/Search';
-import Similar from '../components/Similar';
-import PopupTrailer from '../components/PopupTrailer';
+import {fetchTrailer} from '../redux/api';
+import {setTrailer, deleteTrailer} from '../redux/actions';
+import {Header, Similar, PopupTrailer, Footer, NotFound} from '../components';
 
 const MoviePage = () => {
   const {id} = useParams();
@@ -17,35 +16,23 @@ const MoviePage = () => {
     setIsOpen((s) => !s)
   }
 
-  const sendRequest = (title) => {
-    dispatch(cleanMoviesId());
-    dispatch(fetchMoviesId(title));
-  };
-
   useEffect(() => {
-    dispatch(fetchTrailer(id));
+    fetchTrailer(id)
+    .then(res => dispatch(setTrailer(res.data)))
+    .catch(error => console.error('Error', error))
 
     return () => dispatch(deleteTrailer())
   }, [id]);
 
   return (
     <div className="movie-page">
-      <header className="movie-page__header">
-        <Link className="movie-page__header-link" to="/main">Richbee Shows</Link>
-        <Search 
-          darkTheme 
-          handleSendRequest={sendRequest} 
-          children={
-            <Link className="movie-page__header-link movie-page__header-link--search" to="/main" />
-          } />
-      </header>
-
+      <Header />
       {
         movie ? (
           <>
             <section className="main-block">
               {
-                isOpen ? (<PopupTrailer closePopup={toglePopupTrailer} trailer={trailer} />) : ''
+                isOpen && (<PopupTrailer closePopup={toglePopupTrailer} trailer={trailer} />)
               }
               <div className="main-block__poster-block">
                 <img className="main-block__poster" alt="film poster" src={movie.image} />
@@ -53,13 +40,15 @@ const MoviePage = () => {
               <div className="background-gradient"></div>
               <div className="main-block__wrapper">
                 <h1 className="main-block__title">{movie.title}</h1>
-                <div className="main-block__inner">
+                <div className="main-block__label-block">
                   <span className="main-block__rating-bg">
                     <p className="main-block__rating">IMDb {movie.ratings.imDb}</p>
                   </span>
-                  <p className="main-block__genre">{movie.genres}</p>
-                  <p className="main-block__type">{movie.type}</p>
-                  <p className="main-block__year">{movie.year}</p>
+                  <div className="main-block__inner">
+                    <p className="main-block__genre">{movie.genres}</p>
+                    <p className="main-block__type">{movie.type}</p>
+                    <p className="main-block__year">{movie.year}</p>
+                  </div>
                 </div>
               </div>
 
@@ -81,18 +70,16 @@ const MoviePage = () => {
                 <h3 className="similar-block__title">You may also like</h3>
                 <div className="similar-block__wrapper">
                   {
-                    movie.similars ? (movie.similars.map((similar) => <Similar {...similar} key={similar.id} />)) : ''
+                    movie.similars && (movie.similars.map((similar) => <Similar {...similar} key={similar.id} />))
                   }
                 </div>
               </div>
             </section>
           </>  
-        ) : ''
+        ) : <NotFound />
       }
 
-      <footer className="movie-page__footer">
-        <p>Richbee Shows</p>
-      </footer>
+      <Footer />
     </div>
   )
 };

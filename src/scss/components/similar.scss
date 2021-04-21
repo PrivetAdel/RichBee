@@ -27,6 +27,8 @@
   margin: 30px auto;
   border-radius: 10px;
   background-color: #323232;
+  overflow: hidden;
+  transition: all .3s ease-in-out;
 }
 
 .similar__poster {
@@ -43,22 +45,25 @@
   bottom: 0;
   left: 0;
   border-radius: 10px;
-  transition: 0.5s all;
+  transition: 0.5s;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
 
     .similar__info-block {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      animation-name: fadeInLeft;
+      animation-fill-mode: forwards;
+      animation-duration: 1.5s;
     }
   }
 }
 
 .similar__info-block {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 40px 30px;
+  transform: translateX(-100%);
 }
 
 .similar__title {
@@ -108,4 +113,16 @@
 .similar__rating {
   font-weight: 900;
   font-size: 12px;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

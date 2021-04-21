@@ -85,13 +85,13 @@
   position: relative;
   font-size: 14px;
   font-weight: 400;
-  margin-bottom: 15px;
+  padding-bottom: 15px;
   color: white;
 
   &::after {
     content: '';
     position: absolute;
-    top: 33px;
+    bottom: 0;
     left: 0;
     height: 1px;
     width: 100%;
@@ -100,7 +100,7 @@
 }
 
 .movie__block--awards {
-  margin-top: 30px;
+  margin-top: 15px;
   text-align: start;
 }
 

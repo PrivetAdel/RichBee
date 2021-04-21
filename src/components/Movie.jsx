@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchMovie} from '../redux/actions';
+import {fetchMovie} from '../redux/api';
+import {setMovie} from '../redux/actions';
 
 const shortGenres = (genres) => {
   return genres.split(', ').slice(0, 3).join(', ')
@@ -12,13 +13,15 @@ const Movie = ({id}) => {
   const movie = useSelector((rootReducer) => rootReducer.movies[id]);
 
   useEffect(() => {
-    dispatch(fetchMovie(id));
+    fetchMovie(id)
+    .then(res => dispatch(setMovie(res.data)))
+    .catch(error => console.error('Error', error))
   }, []);
 
   return (
     <div className="movie">
       {
-        movie ? (
+        movie && (
           <>
             <Link className="movie__poster-block" to={`/movies/${id}`}>
               <img className="movie__poster" alt="movie poster" src={movie.image} />
@@ -43,7 +46,7 @@ const Movie = ({id}) => {
               </div>
             </div>
           </>
-        ) : ''
+        )
       }
     </div>
   );
